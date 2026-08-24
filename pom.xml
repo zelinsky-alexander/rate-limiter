@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dev.azelinsky</groupId><artifactId>rate-limiter</artifactId><version>0.1.0-SNAPSHOT</version>
+  <name>distributed-rate-limiter</name>
+  <properties>
+    <maven.compiler.release>26</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <lettuce.version>7.6.0.RELEASE</lettuce.version><netty.version>4.1.137.Final</netty.version><junit.version>6.1.3</junit.version>
+  </properties>
+  <dependencyManagement><dependencies><dependency><groupId>io.netty</groupId><artifactId>netty-bom</artifactId><version>${netty.version}</version><type>pom</type><scope>import</scope></dependency></dependencies></dependencyManagement>
+  <dependencies>
+    <dependency><groupId>io.lettuce</groupId><artifactId>lettuce-core</artifactId><version>${lettuce.version}</version></dependency>
+    <dependency><groupId>io.netty</groupId><artifactId>netty-codec-http</artifactId></dependency>
+    <dependency><groupId>io.netty</groupId><artifactId>netty-handler</artifactId></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
+  </dependencies>
+  <build><plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.1</version><configuration><release>${maven.compiler.release}</release></configuration></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.3</version></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.6.1</version><executions><execution><phase>package</phase><goals><goal>shade</goal></goals><configuration><createDependencyReducedPom>false</createDependencyReducedPom><finalName>rate-limiter</finalName><transformers><transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"><mainClass>dev.azelinsky.ratelimiter.Main</mainClass></transformer></transformers></configuration></execution></executions></plugin>
+  </plugins></build>
+</project>

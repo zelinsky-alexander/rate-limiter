@@ -1,0 +1,28 @@
+services:
+  redis-7000:
+    image: redis:7.2.4-alpine
+    network_mode: host
+    command: ["redis-server", "--port", "7000", "--bind", "127.0.0.1", "--protected-mode", "no", "--cluster-enabled", "yes", "--cluster-config-file", "nodes-7000.conf", "--cluster-node-timeout", "5000", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "7000", "ping"]
+      interval: 1s
+      timeout: 1s
+      retries: 20
+  redis-7001:
+    image: redis:7.2.4-alpine
+    network_mode: host
+    command: ["redis-server", "--port", "7001", "--bind", "127.0.0.1", "--protected-mode", "no", "--cluster-enabled", "yes", "--cluster-config-file", "nodes-7001.conf", "--cluster-node-timeout", "5000", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "7001", "ping"]
+      interval: 1s
+      timeout: 1s
+      retries: 20
+  redis-7002:
+    image: redis:7.2.4-alpine
+    network_mode: host
+    command: ["redis-server", "--port", "7002", "--bind", "127.0.0.1", "--protected-mode", "no", "--cluster-enabled", "yes", "--cluster-config-file", "nodes-7002.conf", "--cluster-node-timeout", "5000", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "7002", "ping"]
+      interval: 1s
+      timeout: 1s
+      retries: 20
