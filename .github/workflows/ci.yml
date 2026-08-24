@@ -20,4 +20,4 @@ jobs:
       - name: One-node Redis Cluster smoke test
         run: ./scripts/smoke-test.sh
       - name: Multi-gateway end-to-end test
-        run: ./scripts/e2e-multi-gateway.sh
+        run: bash ./scripts/e2e-multi-gateway.sh
